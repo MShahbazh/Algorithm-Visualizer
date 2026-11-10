@@ -59,7 +59,6 @@ export default function Visualizer({ rows, result, onMoveToResult }: Props) {
   const next = () => setI((p) => Math.min(p + 1, last));
   const back = () => setI((p) => Math.max(p - 1, 0));
 
-  // keep canvas width in sync with its container
   useEffect(() => {
     const el = wrap.current;
     if (!el) return;
@@ -69,7 +68,6 @@ export default function Visualizer({ rows, result, onMoveToResult }: Props) {
     return () => ro.disconnect();
   }, []);
 
-  // arrow keys
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") setI((p) => Math.min(p + 1, last));
@@ -79,7 +77,6 @@ export default function Visualizer({ rows, result, onMoveToResult }: Props) {
     return () => window.removeEventListener("keydown", h);
   }, [last]);
 
-  // draw current step
   useEffect(() => {
     const c = canvas.current;
     const st = steps[i]?.state;
@@ -115,7 +112,7 @@ export default function Visualizer({ rows, result, onMoveToResult }: Props) {
     const ox = (w - (maxX - minX) * sc) / 2;
     const oy = (H - (maxY - minY) * sc) / 2;
     const X = (x: number) => ox + (x - minX) * sc;
-    const Y = (y: number) => H - oy - (y - minY) * sc; // flip y
+    const Y = (y: number) => H - oy - (y - minY) * sc; 
 
     const dot = (p: Pt, r: number, color: string) => {
       g.beginPath();
