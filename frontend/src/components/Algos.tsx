@@ -15,7 +15,6 @@ const formatSize = (bytes: number) => {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 };
 
-// the Karatsuba answer can arrive as a string, a number or an object; never print "[object Object]"
 const formatAnswer = (a: unknown): string => {
   if (typeof a === "string" || typeof a === "number" || typeof a === "bigint") return String(a);
   if (a && typeof a === "object") {
@@ -113,7 +112,6 @@ useEffect(() => {
       setPoints(d.points ?? []);
     });
 
-  // TODO: start the simulation (not implemented yet by design)
     const start = () =>
     run(async () => {
       try {
